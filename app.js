@@ -4,12 +4,15 @@ const app = express();
 
 const indexRouter = require("./routes/index");
 const faucetRouter = require("./routes/faucet");
-const transferRouter = require("./routes/transfer");
 const coffeeRouter = require("./routes/coffee");
 app.use("/", indexRouter);
 app.use("/faucet", faucetRouter);
-app.use("/transfer", transferRouter);
 app.use("/coffee", coffeeRouter);
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
+app.use(express.static(__dirname + "/public"));
 
 const PORT = 3000;
 app.listen(PORT, (error) => {
