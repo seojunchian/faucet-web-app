@@ -2,10 +2,10 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
-const indexRouter = require("./routes/index");
+const homeRouter = require("./routes/home");
 const faucetRouter = require("./routes/faucet");
 const coffeeRouter = require("./routes/coffee");
-app.use("/", indexRouter);
+app.use("/", homeRouter);
 app.use("/faucet", faucetRouter);
 app.use("/coffee", coffeeRouter);
 

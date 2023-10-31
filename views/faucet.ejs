@@ -10,12 +10,33 @@
     <body>
         <div class="nav">
             <div class="buttons">
-                <button type="button" id="faucet">Faucet</button>
-                <button type="button" id="transfer">Transfer Token</button>
+                <button type="button" id="home">Home</button>
+                <button type="button" id="coffee">Coffee</button>
             </div>
         </div>
         <div class="main">
-            <h2>Welcome to an ERC-2O Token Faucet and Coffee Shop</h2>
+            <p>LOGITECH FAUCET</p>
+            <p>Fast and Reliable.1 Logitech/min.</p>
+            <form id="form">
+                <div class="input">
+                    <input
+                        type="text"
+                        placeholder="Enter your wallet address (0x...) or ETH Mainnet ENS Domain"
+                        maxlength="62"
+                    />
+                    <button type="button">SEND ME LOG</button>
+                </div>
+                <hr />
+                <div class="transactions">
+                    <div class="texts">
+                        <p>Your Transactions</p>
+                        <p>Time</p>
+                    </div>
+                    <div class="infos">
+                        <p>-</p>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="footer">https://github.com/seojunchian</div>
         <script src="javascript/faucet.js"></script>
