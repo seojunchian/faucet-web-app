@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: "Segoe UI", Verdana, sans-serif;
+}
+body {
+    background: linear-gradient(to right, #3f51b8, #c24fb6);
+    display: flex;
+    flex-direction: column;
+}
+.nav {
+    padding: 30px;
+    color: #fef8e6;
+}
+.nav > .buttons {
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 100px;
+}
+.nav > .buttons > button {
+    background-color: #bc5148;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 10px;
+    height: 50px;
+    width: 150px;
+    border: none;
+    cursor: pointer;
+}
+
+.main {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.main > p {
+    color: #fff;
+    font-size: 20px;
+}
+
+.main > p:first-child {
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 4px;
+}
+
+.main > #form {
+    margin-top: 50px;
+    background-color: #f5f5f5;
+    width: 900px;
+    border-radius: 20px;
+}
+
+.main > #form > .input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.main > #form > .input > input {
+    width: 600px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    margin-right: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.main > #form > .input > button {
+    width: 200px;
+    height: 40px;
+    background-color: #3f51b8;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.main > #form > .transactions {
+    border: 1px solid black;
+    width: 800px;
+    border-radius: 10px;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.main > #form > .transactions > .texts {
+    height: 50px;
+    background: linear-gradient(to right, #3f51b8, #c24fb6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main > #form > .transactions > .texts > p {
+    color: #fff;
+    margin: 5px 20px 10px;
+}
+
+.main > #form > .transactions > .texts > p:last-child {
+    margin: 5px 50px 10px;
+}
+
+.main > #form > .transactions > .infos {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main > #form > .transactions > .infos > p {
+    margin: 5px 20px 0;
+}
+
+.footer {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
