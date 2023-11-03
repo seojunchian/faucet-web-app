@@ -3,6 +3,8 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-abstract contract DevToken is ERC20{
-    
+contract LogitechToken is ERC20{
+    constructor() ERC20("DevToken", "DVT"){
+        _mint(msg.sender, 1000*10**18);
+    }
 }
