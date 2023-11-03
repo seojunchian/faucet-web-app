@@ -5,26 +5,9 @@
     "scripts": {
         "start": "nodemon app.js"
     },
-    "dependencies": {
-        "@openzeppelin/contracts": "^5.0.0",
-        "cookie-parser": "~1.4.4",
-        "debug": "~2.6.9",
-        "ejs": "^3.1.9",
-        "express": "~4.16.1",
-        "http-errors": "~1.6.3",
-        "morgan": "~1.9.1",
-        "pug": "2.0.0-beta11",
-        "web3": "^4.2.1"
-    },
     "devDependencies": {
-<<<<<<< HEAD
-        "dotenv": "^16.3.1",
-        "hardhat": "^2.19.0"
-=======
         "@nomicfoundation/hardhat-toolbox": "^3.0.0",
         "dotenv": "^16.3.1",
-        "hardhat": "^2.19.0",
-        "nodemon": "^3.0.1"
->>>>>>> 592f9359e78d132964dcb63f7deb8966deb72287
+        "hardhat": "^2.19.0"
     }
 }
