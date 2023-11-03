@@ -1,0 +1,9 @@
+create token
+first test on localhost with ganache or with hardhat network itself
+deploy token on sepolia chain
+send token to yourself for testing
+interact sending token function in solidity with js faucet btn
+
+create nfts
+deploy nfts on goerli chain
+exchange nfts with token

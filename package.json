@@ -17,7 +17,14 @@
         "web3": "^4.2.1"
     },
     "devDependencies": {
+<<<<<<< HEAD
         "dotenv": "^16.3.1",
         "hardhat": "^2.19.0"
+=======
+        "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+        "dotenv": "^16.3.1",
+        "hardhat": "^2.19.0",
+        "nodemon": "^3.0.1"
+>>>>>>> 592f9359e78d132964dcb63f7deb8966deb72287
     }
 }
