@@ -12,8 +12,6 @@ async function main() {
     to: accounts[1],
     value: web3.utils.toWei("1", "ether"),
   });
-
-  const logitechToken = web3.eth.Contract("../contracts/LogitechToken.sol");
 }
 
 main().catch((error) => {
