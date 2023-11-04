@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ERC-20 Token Faucet</title>
-        <!-- FAV ICON -->
-        <link href="stylesheet/faucet.css" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-        <div class="nav">
-            <div class="buttons">
-                <button type="button" id="home">Home</button>
-                <button type="button" id="coffee">Coffee</button>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ERC-20 Token Faucet</title>
+    <!-- FAV ICON -->
+    <link href="stylesheet/faucet.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="nav">
+      <div class="buttons">
+        <button type="button" id="home">Home</button>
+        <button type="button" id="coffee">Coffee</button>
+      </div>
+      <div class="enter">
+        <button type="button" id="log-in">Log in</button>
+        <p>Address:</p>
+        <p>Balance:</p>
+      </div>
+    </div>
+    <div class="main">
+      <p>LOGITECH FAUCET</p>
+      <p>Fast and Reliable.1 Logitech/min.</p>
+      <form id="form">
+        <div class="input">
+          <input
+            type="text"
+            placeholder="Enter your wallet address (0x...) or ETH Mainnet ENS Domain"
+            maxlength="62"
+          />
+          <button type="button">SEND ME LOG</button>
         </div>
-        <div class="main">
-            <p>LOGITECH FAUCET</p>
-            <p>Fast and Reliable.1 Logitech/min.</p>
-            <form id="form">
-                <div class="input">
-                    <input
-                        type="text"
-                        placeholder="Enter your wallet address (0x...) or ETH Mainnet ENS Domain"
-                        maxlength="62"
-                    />
-                    <button type="button">SEND ME LOG</button>
-                </div>
-                <hr />
-                <div class="transactions">
-                    <div class="texts">
-                        <p>Your Transactions</p>
-                        <p>Time</p>
-                    </div>
-                    <div class="infos">
-                        <p>-</p>
-                    </div>
-                </div>
-            </form>
+        <hr />
+        <div class="transactions">
+          <div class="texts">
+            <p>Your Transactions</p>
+            <p>Time</p>
+          </div>
+          <div class="infos">
+            <p>-</p>
+          </div>
         </div>
-        <div class="footer">https://github.com/seojunchian</div>
-        <script src="javascript/faucet.js"></script>
-    </body>
+      </form>
+    </div>
+    <div class="footer">https://github.com/seojunchian</div>
+    <script src="javascript/faucet.js"></script>
+  </body>
 </html>

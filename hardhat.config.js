@@ -5,7 +5,7 @@ require("dotenv").config();
 module.exports = {
   solidity: "0.8.19",
   networks: {
-    sepolia: {
+    ganache: {
       url: process.env.RPC_URL,
       accounts: [process.env.PRIVATE_KEY],
     },
