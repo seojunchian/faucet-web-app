@@ -1,10 +1,19 @@
-const hre = require("hardhat");
+const {Web3} = require("web3");
+require("dotenv").config();
 
 async function main() {
-  const LogitechToken = await hre.ethers.getContractFactory("LogitechToken");
-  const logitechToken = await LogitechToken.deploy("LogitechToken", "LOG");
+  const web3 = new Web3(new Web3.providers.HttpProvider(process.env.RPC_URL));
+  console.log(await web3.eth.getBlockNumber());
 
-  console.log(`Contract deployed to ${await logitechToken.getAddress()}`);
+  const accounts = await web3.eth.getAccounts();
+
+  await web3.eth.sendTransaction({
+    from: accounts[0],
+    to: accounts[1],
+    value: web3.utils.toWei("1", "ether"),
+  });
+
+  const logitechToken = web3.eth.Contract("../contracts/LogitechToken.sol");
 }
 
 main().catch((error) => {
