@@ -1,0 +1,5 @@
+deploy contract-token
+mint it to your account
+handle faucet
+create nfts
+buy nft with diffrent accounts
