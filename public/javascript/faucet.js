@@ -1,6 +1,6 @@
 document.getElementById("home").addEventListener("click", () => {
-    window.location.href = "/";
+  window.location.href = "/";
 });
 document.getElementById("coffee").addEventListener("click", () => {
-    window.location.href = "coffee";
+  window.location.href = "coffee";
 });
