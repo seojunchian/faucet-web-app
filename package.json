@@ -17,5 +17,9 @@
     "hardhat": "^2.19.0",
     "nodemon": "^3.0.1",
     "web3": "^4.2.2"
+  },
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^2.1.15",
+    "truffle": "^5.11.5"
   }
 }
