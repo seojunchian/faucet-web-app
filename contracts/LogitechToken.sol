@@ -1,65 +1,85 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.19;
 
-contract LogitechToken {
+import "./errors.sol";
 
+contract LogitechToken is CustomErrors{
+
+  mapping(address => uint256) private _balances;
+  uint256 private _totalSupply;
   string private _name;
-  function name() public view returns (string memory) {
-    return _name;
+  string private _symbol;
+
+  event Transfer(address sender, address receiver, uint256 amount);
+
+  constructor(string memory name_, string memory symbol_) {
+    _name = name_;
+    _symbol = symbol_;
   }
 
-  string private _symbol;
-  function symbol() public view returns (string memory) {
+  function balanceOf(address account) internal view returns (uint256) {
+    return _balances[account];
+  }
+  function totalSupply() internal view returns (uint256) {
+    return _totalSupply;
+  }
+  function name() internal view returns (string memory) {
+    return _name;
+  }
+  function symbol() internal view returns (string memory) {
     return _symbol;
   }
 
-  uint256 private _totalSupply;
-  function totalSupply() public view returns (uint256) {
-    return _totalSupply;
-  }
-
-  mapping(address => uint256) private _balances;
-  function balanceOf(address _account) public view returns (uint256) {
-    return _balances[_account];
-  }
-
-  constructor(string memory name_, string memory symbol_, uint256 totalSupply_) {
-    _name = name_;
-    _symbol = symbol_;
-    _totalSupply = totalSupply_;
-    _balances[msg.sender] += totalSupply_;
-  }
-
-  mapping(address => mapping (address => uint256)) allowed;
-
-  event Transfer(address sender, address receiver, uint256 numTokens);
-  event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
-
-  function transfer(address receiver, uint256 numToken) public returns (bool) {
-    require(numToken <= _balances[msg.sender], "Cant send more than the total supply");
-    _balances[msg.sender] -= numToken;
-    _balances[receiver] += numToken;
-    emit Transfer(msg.sender, receiver, numToken);
+  function transfer(address receiver, uint256 amount) internal returns (bool) {
+    address owner = msg.sender;
+    _transfer(owner, receiver, amount);
     return true;
   }
 
-  function approve(address delegate, uint256 numTokens) public returns (bool) {
-    allowed[msg.sender][delegate] = numTokens;
-    emit Approval(msg.sender, delegate, numTokens);
-    return true;
+  function _transfer(address sender, address receiver, uint256 amount) internal {
+    if(sender == address(0)) {
+      revert InvalidSender(sender);
+    }
+    if(receiver == address(0)) {
+      revert InvalidReceiver(receiver);
+    }
+    _update(sender, receiver, amount);
   }
 
-  function allowance(address owner, address delegate) public view returns (uint256) {
-    return allowed[owner][delegate];
+  function _update(address sender, address receiver, uint256 amount) internal {
+    if(sender == address(0)) {
+      _totalSupply += amount;
+    } else {
+      if(_balances[sender] < amount) {
+        revert InsufficientBalance(sender, _balances[sender], amount);
+      }
+      unchecked {
+        _balances[sender] -= amount;
+      }
+    }
+    if(receiver == address(0)) {
+      unchecked {
+        _totalSupply -= amount;
+      }
+    } else {
+      unchecked {
+        _balances[receiver] += amount;
+      }
+    }
+    emit Transfer(sender, receiver, amount);
   }
 
-  function transferFrom(address owner, address buyer, uint numTokens) public returns (bool) {
-    require(numTokens <= _balances[owner]);
-    require(numTokens <= allowed[owner][msg.sender]);
-    _balances[owner] = _balances[owner] - numTokens;
-    allowed[owner][msg.sender] = allowed[buyer][msg.sender] - numTokens;
-    _balances[buyer] = _balances[buyer] + numTokens;
-    emit Transfer(owner, buyer, numTokens);
-    return true;
+  function _mint(address receiver, uint256 amount) internal {
+    if(receiver == address(0)) {
+      revert InvalidReceiver(receiver);
+    }
+    _update(address(0), receiver, amount);
+  }
+
+  function _burn(address sender, uint256 amount) internal {
+    if(sender == address(0)) {
+      revert InvalidSender(sender);
+    }
+    _update(sender, address(0), amount);
   }
 }
