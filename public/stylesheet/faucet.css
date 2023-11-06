@@ -11,6 +11,7 @@ body {
 }
 .nav {
   padding: 30px;
+  display: flex;
 }
 .nav > .buttons {
   width: 400px;
@@ -27,6 +28,26 @@ body {
   width: 150px;
   border: none;
   cursor: pointer;
+}
+
+.nav > .enter {
+  display: flex;
+  align-items: center;
+}
+
+.nav > .enter > #log-in {
+  width: 150px;
+  height: 50px;
+  color: #fff;
+  border-radius: 10px;
+  background-color: #ddb067;
+  border: none;
+  margin-right: 40px;
+  cursor: pointer;
+}
+
+.nav > .enter > .infos > p {
+  font-size: 20px;
 }
 
 .main {
