@@ -1,5 +1,3 @@
-deploy contract-token
-mint it to your account
-handle faucet
-create nfts
-buy nft with diffrent accounts
+07.11 route
+figure out minting token with your smart contract and learn why cant u do it with your current smart contract
+figure out interact with smart contract using web3js
