@@ -1,3 +1,9 @@
 07.11 route
 figure out minting token with your smart contract and learn why cant u do it with your current smart contract
 figure out interact with smart contract using web3js
+
+08.11
+starting all over in a diffrent folder will try to deploy with truffle
+first with erc20
+second without erc20 meaning customized token or another way of saying smart contract
+then will get back tomorrow for deploying here and try to controll with web3js library
