@@ -9,7 +9,6 @@ document.getElementById("log-in").addEventListener("click", async () => {
   let balance = document.getElementById("balance");
   let provider = window.ethereum;
   if (typeof provider !== "undefined") {
-    // metamask installed.
     provider
       .request({method: "eth_requestAccounts"})
       .then((accounts) => {
