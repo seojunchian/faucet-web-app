@@ -1,12 +1,12 @@
 require("dotenv").config();
-const {MNEMONIC, PROJECT_ID} = process.env;
+// const {MNEMONIC, API_KEY} = process.env;
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 module.exports = {
   networks: {
     sepolia: {
       provider: () => {
-        new HDWalletProvider(MNEMONIC, API_KEY);
+        return new HDWalletProvider(process.env.MNEMONIC, process.env.API_KEY);
       },
       network_id: 11155111,
     },
