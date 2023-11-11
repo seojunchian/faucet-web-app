@@ -1,5 +1,5 @@
-const ERC20 = artifacts.require("ERC20");
+const Logitech = artifacts.require("Logitech");
 
 module.exports = (deployment) => {
-  deployment.deploy(ERC20);
+  deployment.deploy(Logitech);
 };
