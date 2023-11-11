@@ -1,13 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import {ERC20Errors} from "./ERC20Errors.sol";
+import {ILogitech} from "./ILogitech.sol";
 
-contract ERC20 is ERC20Errors {
+contract Logitech is ILogitech {
   mapping(address account => uint256) private _balances;
-
-  event Transfer(address indexed from, address indexed to, uint256 value);
-
   uint256 private _totalSupply;
   string private _name;
   string private _symbol;
@@ -15,7 +12,7 @@ contract ERC20 is ERC20Errors {
   constructor(string memory name_, string memory symbol_) {
     _name = name_;
     _symbol = symbol_;
-    _mint(msg.sender, 10000000000000000000000000);
+    mint(msg.sender, 10000000000000000000000000);
   }
 
   function name() public view virtual returns (string memory) {
@@ -34,16 +31,25 @@ contract ERC20 is ERC20Errors {
     return _balances[account];
   }
 
-  function _update(address from, address to, uint256 value) internal virtual {
+  function transferFrom(address from, address to, uint256 amount) internal {
+    if(from == address(0)) {
+      revert InvalidSender(from);
+    }
+    if(to == address(0)) {
+      revert InvalidReceiver(to);
+    }
+    update(from, to, amount);
+  }
+
+  function update(address from, address to, uint256 value) internal virtual {
     if (from == address(0)) {
       _totalSupply += value;
     } else {
-      uint256 fromBalance = _balances[from];
-      if (fromBalance < value) {
-        revert ERC20InsufficientBalance(from, fromBalance, value);
+      if (_balances[from] < value) {
+        revert InsufficientBalance(from, _balances[from], value);
       }
       unchecked {
-        _balances[from] = fromBalance - value;
+        _balances[from] -= value;
       }
     }
 
@@ -59,10 +65,10 @@ contract ERC20 is ERC20Errors {
     emit Transfer(from, to, value);
   }
 
-  function _mint(address account, uint256 value) internal {
-    if (account == address(0)) {
-      revert ERC20InvalidReceiver(address(0));
+  function mint(address to, uint256 amount) internal {
+    if (to == address(0)) {
+      revert InvalidReceiver(address(0));
     }
-    _update(address(0), account, value);
+    update(address(0), to, amount);
   }
 }
