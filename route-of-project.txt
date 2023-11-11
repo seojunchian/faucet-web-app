@@ -12,6 +12,7 @@ DONE 10.10.23
 
 10.10.23
 Deploy contract understand its essantials and try to write it down your own
+DONE 11.10.23
 
 11.10.23
 how to sign a contract without web3js or with it without a public node
