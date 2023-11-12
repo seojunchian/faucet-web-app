@@ -6,9 +6,21 @@ module.exports = {
   networks: {
     sepolia: {
       provider: () => {
-        return new HDWalletProvider(process.env.MNEMONIC, process.env.API_KEY);
+        return new HDWalletProvider(
+          process.env.SENDER_MNEMONIC,
+          process.env.SEPOLIA_API_KEY
+        );
       },
       network_id: 11155111,
+    },
+    mumbai: {
+      provider: () => {
+        return new HDWalletProvider(
+          process.env.SENDER_MNEMONIC,
+          process.env.MUMBAI_API_KEY
+        );
+      },
+      network_id: 80001,
     },
   },
   compilers: {
