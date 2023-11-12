@@ -19,3 +19,7 @@ how to sign a contract without web3js or with it without a public node
 
 12.10.23
 how to send selected token between accounts in metamask using web3js
+
+nft contract
+nft deploy
+coffe js img click process to metamask for exchange in eth or log token
