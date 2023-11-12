@@ -9,7 +9,6 @@ document.getElementById("log-in").addEventListener("click", async () => {
   const accounts = await window.ethereum.request({
     method: "eth_requestAccounts",
   });
-
   const balances = await window.ethereum.request({
     method: "eth_getBalance",
     params: [accounts[0]],
@@ -18,6 +17,10 @@ document.getElementById("log-in").addEventListener("click", async () => {
   window.ethereum.on("accountsChanged", (accounts) => {
     address.innerHTML = "Address: " + accounts[0];
   });
+  window.ethereum.on("accountsChanged", (balances) => {
+    balances.innerHTML = "Balance: " + balances;
+  });
+
   document.getElementById("address").innerHTML = "Address: " + accounts[0];
   document.getElementById("balance").innerHTML = "Balance: " + balances;
 });
@@ -33,7 +36,7 @@ document.getElementById("btn-send").addEventListener("click", async () => {
         {
           from: accounts[0],
           to: document.getElementById("input-address").value,
-          value: "1000000000000000",
+          value: "1000000000000",
         },
       ],
     })
