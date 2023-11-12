@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import {ILogitech} from "./ILogitech.sol";
+import "./LogitechErrorsAndEvents.sol";
 
-contract Logitech is ILogitech {
-	mapping(address => uint256) private balances;
+contract Logitech is LogitechErrorsAndEvents {
+	mapping(address => uint256) private _balances;
 
 	uint256 private _totalSupply;
 
@@ -14,70 +14,78 @@ contract Logitech is ILogitech {
 	constructor(string memory name_, string memory symbol_) {
 		_name = name_;
 		_symbol = symbol_;
-		mint(msg.sender, 1);
+		_mint(msg.sender, 1000000000000000000000);
 	}
 
-	function name() public view virtual returns (string memory) {
+	function name() public view returns (string memory) {
 		return _name;
 	}
 
-	function symbol() public view virtual returns (string memory) {
+	function symbol() public view returns (string memory) {
 		return _symbol;
 	}
 
-	function totalSupply() public view virtual returns (uint256) {
+	function decimals() public pure returns (uint8) {
+		return 18;
+	}
+
+	function totalSupply() public view returns (uint256) {
 		return _totalSupply;
 	}
 
-	function balanceOf(address account) public view virtual returns (uint256) {
-		return balances[account];
+	function balanceOf(address account) public view returns (uint256) {
+		return _balances[account];
 	}
 
-	function transferFrom(address from, address to, uint256 amount) internal {
+	function transfer(address to, uint256 amount) public {
+		_transfer(msg.sender, to, amount);
+	}
+
+	function _transfer(address from, address to, uint256 amount) internal {
 		if(from == address(0)) {
 			revert InvalidSender(from);
 		}
 		if(to == address(0)) {
 			revert InvalidReceiver(to);
 		}
-		update(from, to, amount);
+		_update(from, to, amount);
 	}
 
-	function update(address from, address to, uint256 value) internal virtual {
+	function _update(address from, address to, uint256 amount) internal {
 		if (from == address(0)) {
-			_totalSupply += value;
+			_totalSupply += amount;
 		} else {
-			if (balances[from] < value) {
-				revert InsufficientBalance(from, balances[from], value);
+			if (_balances[from] < amount) {
+				revert InsufficientBalance(from, _balances[from], amount);
 			}
 			unchecked {
-				balances[from] -= value;
+				_balances[from] -= amount;
 			}
 		}
 
 		if (to == address(0)) {
 			unchecked {
-				_totalSupply -= value;
+				_totalSupply -= amount;
 			}
 		} else {
 			unchecked {
-				balances[to] += value;
+				_balances[to] += amount;
 			}
 		}
-		emit Transfer(from, to, value);
+		emit Transfer(from, to, amount);
 	}
 
-	function mint(address to, uint256 amount) internal {
+	function _mint(address to, uint256 amount) internal {
 		if (to == address(0)) {
 			revert InvalidReceiver(address(0));
 		}
-		update(address(0), to, amount);
+		_update(address(0), to, amount);
 	}
 
-	function burn(address from, uint256 amount) internal {
+	function _burn(address from, uint256 amount) internal {
 		if (from == address(0)) {
 			revert InvalidSender(from);
 		}
-		update(from, address(0), amount);
+		_update(from, address(0), amount);
 	}
 }
