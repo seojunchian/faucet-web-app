@@ -17,9 +17,6 @@ document.getElementById("log-in").addEventListener("click", async () => {
   window.ethereum.on("accountsChanged", (accounts) => {
     address.innerHTML = "Address: " + accounts[0];
   });
-  window.ethereum.on("accountsChanged", (balances) => {
-    balances.innerHTML = "Balance: " + balances;
-  });
 
   document.getElementById("address").innerHTML = "Address: " + accounts[0];
   document.getElementById("balance").innerHTML = "Balance: " + balances;
