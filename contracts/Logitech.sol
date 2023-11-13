@@ -4,7 +4,8 @@ pragma solidity ^0.8.19;
 import "./LogitechErrorsAndEvents.sol";
 
 contract Logitech is LogitechErrorsAndEvents {
-	mapping(address => uint256) private _balances;
+	mapping(address account => uint256) private _balances;
+	mapping(address account => mapping(address spender => uint256)) private _allowances;
 
 	uint256 private _totalSupply;
 
@@ -37,8 +38,17 @@ contract Logitech is LogitechErrorsAndEvents {
 		return _balances[account];
 	}
 
-	function transfer(address to, uint256 amount) public {
+	function allowed(address account) public view returns (uint256) {
+		return _allowances[msg.sender][account];
+	}
+
+	function approve(address spender, uint256 amount) public {
+		_approve(msg.sender, spender, amount);
+	}
+
+	function transfer(address to, uint256 amount) public returns (bool) {
 		_transfer(msg.sender, to, amount);
+		return true;
 	}
 
 	function _transfer(address from, address to, uint256 amount) internal {
@@ -49,6 +59,17 @@ contract Logitech is LogitechErrorsAndEvents {
 			revert InvalidReceiver(to);
 		}
 		_update(from, to, amount);
+	}	
+
+	function _approve(address approver, address spender, uint256 amount) internal {
+		if(approver == address(0)) {
+			revert InvalidApprover(approver);
+		}
+		if(spender == address(0)) {
+			revert InvalidSpender(spender);
+		}
+		_allowances[approver][spender] += amount;
+		emit Approval(approver, spender, amount);
 	}
 
 	function _update(address from, address to, uint256 amount) internal {
@@ -74,7 +95,7 @@ contract Logitech is LogitechErrorsAndEvents {
 		}
 		emit Transfer(from, to, amount);
 	}
-
+	
 	function _mint(address to, uint256 amount) internal {
 		if (to == address(0)) {
 			revert InvalidReceiver(address(0));
