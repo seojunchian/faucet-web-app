@@ -1,3 +1,19 @@
+REST OF THE PROJECT
+
+how to use web3js in browser
+how to send selected token with web3js in browser
+how to send selected token with metamask with coding
+create nft 
+exchange it with selected token using metamask
+exchange it with selected token using web3js in browser
+
+finish little parts
+better coffee side of the website
+
+END OF PROJECT
+
+//
+
 07.11 route
 figure out minting token with your smart contract and learn why cant u do it with your current smart contract
 figure out interact with smart contract using web3js
