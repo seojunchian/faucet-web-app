@@ -6,6 +6,7 @@ document.getElementById("coffee").addEventListener("click", () => {
 });
 
 document.getElementById("log-in").addEventListener("click", async () => {
+  const provider = window.ethereum;
   const accounts = await window.ethereum.request({
     method: "eth_requestAccounts",
   });
@@ -39,4 +40,8 @@ document.getElementById("btn-send").addEventListener("click", async () => {
     })
     .then((txHash) => console.log(txHash))
     .catch((error) => console.error(error));
+});
+
+document.getElementById("footer").addEventListener("click", () => {
+  document.getElementById("footer").setAttribute("target", "_blank");
 });
